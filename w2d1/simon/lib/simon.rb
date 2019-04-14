@@ -19,9 +19,9 @@ class Simon
 
   def take_turn
 	self.require_sequence
-	self.show_sequence
 	unless self.game_over
 		self.round_success_message 
+		self.show_sequence
 		self.sequence_length += 1
 	end
   end
@@ -31,7 +31,13 @@ class Simon
   end
 
   def require_sequence
-	
+	#method behavior is unspecified
+	if seq.last
+		puts "Simon says: '#{seq.last}'!"
+		puts "Your input: "
+		data = gets.chomp
+		self.game_over = true unless data == seq.last
+	end
   end
 
   def add_random_color
@@ -39,11 +45,13 @@ class Simon
   end
 
   def round_success_message
-
+	#method behavior is unspecified
+	puts "Correct! " if seq.length > 0
   end
 
   def game_over_message
-
+	#method behavior is unspecified
+	puts "Incorrect. This game has ended.\nLet's play again.\n\n"
   end
 
   def reset_game
